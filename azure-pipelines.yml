@@ -1,5 +1,29 @@
 # Docker
+- task: AzureKeyVault@2
+  inputs:
+    KeyVaultName: 
+    SecretsFilter: '*'
+    RunAsPreJob: false
 # Build a Docker image
+- task: CmdLine@2
+  inputs:
+    script: |
+      echo Write your commands here
+- task: replacetokens@5
+  inputs:
+    targetFiles: '**/*.config'
+    encoding: 'auto'
+    tokenPattern: 'default'
+    writeBOM: true
+    actionOnMissing: 'warn'
+    keepToken: false
+    actionOnNoFiles: 'continue'
+    enableTransforms: false
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: true
+      
+      echo Hello world
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
