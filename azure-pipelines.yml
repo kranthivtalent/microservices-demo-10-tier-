@@ -4,7 +4,7 @@ trigger:
 pool:
  name: akspool01
  demands:
- - agent.name equals aksagent01
+   - agent.name -equals aksagent01
 
 
 stages:
