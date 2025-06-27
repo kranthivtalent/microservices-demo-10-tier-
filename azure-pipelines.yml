@@ -8,17 +8,15 @@ pool:
 
 
 stages:
-  - stage: aks_deployment
-    displayName: "aks_deployment"
+  - stage: aks_deployment1
+    displayName: "aks_deployment1"
     jobs:
-      - job: aks_deployment
+      - job: aks_deployment1
         steps:
         - task: KubernetesManifest@1
           inputs:
             action: 'deploy'
-            connectionType: 'azureResourceManager'
-            azureSubscriptionConnection: 'aks-conn'
-            azureResourceGroup: 'aks-grp'
-            kubernetesCluster: 'aks-cluster'
-            namespace: 'default'
+            connectionType: 'kubernetesServiceConnection'
+            kubernetesServiceConnection: 'aks-conn'
+            namespace: 'kumar-ns'
             manifests: 'release/kubernetes-manifests.yaml'
