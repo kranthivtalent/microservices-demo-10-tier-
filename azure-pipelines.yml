@@ -2,9 +2,9 @@ trigger:
   - main
 
 pool:
- name: akspool01
+ name: aks01-pool
  demands:
-   - agent.name -equals aksagent01
+   - agent.name -equals aks-agent01
 
 
 stages:
@@ -17,7 +17,7 @@ stages:
           inputs:
             action: 'deploy'
             connectionType: 'azureResourceManager'
-            azureSubscriptionConnection: 'AKS_TO_pipeline'
+            azureSubscriptionConnection: 'aks-conn'
             azureResourceGroup: 'aks-grp'
             kubernetesCluster: 'aks-cluster'
             namespace: 'default'
