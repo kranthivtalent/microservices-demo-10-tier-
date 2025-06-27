@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: 
+    displayName: aks-deploy-stage
+    jobs:
+      - job:
+        displayName: aks-deploy-job
+        steps:
+        - task: KubernetesManifest@1
+          inputs:
+            action: 'deploy'
+            connectionType: 'azureResourceManager'
+            azureSubscriptionConnection: 'Azure subscription 1(f2d8f14a-9a3f-43b2-81b0-5b3d903a3389)'
+            azureResourceGroup: 'aks-grp'
+            kubernetesCluster: 'aks-cluser1'
+            namespace: 'kumar-ns'
+            manifests: 'release/kubernetes-manifests.yaml'
